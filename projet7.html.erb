@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <h1> J'essaye de respecter les consignes du projet 7 ！！！！！！！！！！！！！</h1>
+
+
+    <% require 'pg' %>
+
+    <% connection = PG::connect(dbname: "goya") %>
+    <% connection.internal_encoding = "UTF-8" %>
+
+
+    <% result = connection.exec("SELECT * FROM crops WHERE quality=false;") %>
+    <% data = [] %>
+
+
+    <% result.each do |record| %>
+      <%  data << "<p> La taille de goya de mauvaise qualité est：#{record["length"]}　poids#{record["weight"]} vendu par：#{record["give_for"]} le #{record["weight"]}</p><br>" %>
+    <% end %>
+
+    <form action="goya.cgi" method="POST">
+       Appuyez sur le bouton ci-dessous pour accéder aux informations sur les goya de mauvaise qualité.<br><br>
+       <!-- Attribuez les données que vous souhaitez envoyer à value -->
+       <!-- Utilisez name = "goya" comme marqueur d'information -->
+      <input type="hidden" name="goya" value="<%= data.join(' ') %>">
+      <input type="submit" name="Afficher" >
+
+  </body>
+</html>
