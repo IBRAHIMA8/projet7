@@ -17,7 +17,7 @@
 
 
     <% result.each do |record| %>
-      <%  data << "<p> La taille de goya de mauvaise qualité est：#{record["length"]}　poids#{record["weight"]} vendu par：#{record["give_for"]} le #{record["weight"]}</p><br>" %>
+      <%  data << "Taille：#{record["length"]}　poids : #{record["weight"]} vendu par：#{record["give_for"]} le : #{record["date"]}" %>
     <% end %>
 
     <form action="goya.cgi" method="POST">
