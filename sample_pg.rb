@@ -9,12 +9,12 @@ begin
   # Manipuler PostgreSQL à l'aide de variables de connexion
   # Dans .exec, goyaDB "select weight, give_for from crop;"
   # Exécutez directement l'instruction SQL ci-dessus et stockez le résultat dans la variable de résultat.
-  result = connection.exec("SELECT * FROM crops WHERE quality=false;")
+  result = connection.exec("select weight, give_for from crops;")
 
   # Traiter chaque ligne récupérée
   result.each do |record|
 # Prenez chaque ligne et affichez-la sur le terminal avec put
-   puts "Taille：#{record["length"]}　poids : #{record["weight"]} vendu par：#{record["give_for"]} le : #{record["date"]}"
+      puts "La taille de la courge amère：#{record["weight"]}　Qui a vendu：#{record["give_for"]}"
   end
 ensure
   # Enfin, utilisez .finish pour vous déconnecter de la base de données
